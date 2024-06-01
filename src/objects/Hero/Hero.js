@@ -117,6 +117,12 @@ export class Hero extends GameObject {
 
         let nextX = this.destinationPosition.x;
         let nextY = this.destinationPosition.y;
+
+        // round the x and y to the nearest whole number
+        nextX = Math.round(nextX);
+        nextY = Math.round(nextY);
+
+
         const gridSize = config["gridSize"];
 
         if (input.direction === LEFT) {
