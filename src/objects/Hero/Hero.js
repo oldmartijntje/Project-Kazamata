@@ -63,9 +63,8 @@ export class Hero extends GameObject {
     tryEmitPosition() {
         if (this.lastPosition && this.lastPosition.x === this.position.x && this.lastPosition.y === this.position.y) {
             return;
-        } else if (this.lastPosition) {
-            events.emit('move', this.position, this.position);
         }
+        events.emit('HERO_POSITION', { position: this.position.duplicate(), initialPosition: !this.lastPosition });
         this.lastPosition = this.position.duplicate();
     }
 

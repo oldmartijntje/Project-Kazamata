@@ -7,6 +7,7 @@ import { gridCells } from './src/helpers/grid.js';
 import { GameObject } from './src/GameObject.js';
 import { Hero } from './src/objects/Hero/Hero.js';
 import { events } from './src/Events.js';
+import { Camera } from './src/Camera.js';
 
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
@@ -20,7 +21,6 @@ const skySprite = new Sprite({
     resource: resources.images.sky,
     frameSize: new Vector2(320, 180),
 });
-mainScene.addChild(skySprite);
 
 const groundSprite = new Sprite({
     resource: resources.images.ground,
@@ -31,12 +31,11 @@ mainScene.addChild(groundSprite);
 const hero = new Hero(gridCells(6), gridCells(5));
 mainScene.addChild(hero);
 
+const camera = new Camera();
+mainScene.addChild(camera);
+
 // needs to happen if you want to controll the player
 mainScene.input = new Input();
-
-events.on('move', mainScene, (value) => {
-    console.log("hero moved!", value);
-});
 
 
 const update = (deltaTime) => {
@@ -44,7 +43,21 @@ const update = (deltaTime) => {
 }
 
 const draw = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // draw sky, when attached to mainScene it will move with the camera
+    skySprite.draw(ctx, 0, 0);
+
+    // save current state (for camera offset)
+    ctx.save();
+
+    //offset by camera position
+    ctx.translate(camera.position.x, camera.position.y);
+
     mainScene.draw(ctx, 0, 0);
+
+    // restore to original state
+    ctx.restore();
 }
 
 
