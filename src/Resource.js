@@ -1,10 +1,10 @@
 class Resources {
     constructor() {
         this.toLoad = {
-            sky: "./public/sprites/sky.png",
-            ground: "./public/sprites/ground.png",
-            hero: "./public/sprites/hero-sheet.png",
-            shadow: "./public/sprites/shadow.png",
+            sky: "./sprites/sky.png",
+            ground: "./sprites/ground.png",
+            hero: "./sprites/hero-sheet.png",
+            shadow: "./sprites/shadow.png",
 
         }
 
@@ -15,7 +15,7 @@ class Resources {
             const img = new Image();
             img.src = this.toLoad[key];
             this.images[key] = {
-                img: img,
+                image: img,
                 isLoaded: false
             };
             img.onload = () => {
