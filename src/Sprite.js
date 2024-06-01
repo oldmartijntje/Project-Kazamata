@@ -9,7 +9,8 @@ export class Sprite {
         vFrames, // how the sprite is arranged vertically
         frame, // which frame to display
         scale, // scale of the sprite
-        position // position of the sprite
+        position, // position of the sprite
+        animations, // animation of the sprite
     }) {
         this.resource = resource;
         this.frameSize = frameSize ?? new Vector2(config["gridSize"], config["gridSize"]);
@@ -19,6 +20,7 @@ export class Sprite {
         this.frameMap = new Map();
         this.scale = scale ?? 1;
         this.position = position ?? new Vector2(0, 0);
+        this.animations = animations ?? null;
         this.buildFrameMap();
     }
 
@@ -36,6 +38,15 @@ export class Sprite {
                 frameCount++;
             }
         }
+    }
+
+    step(deltaTime) {
+        if (!this.animations) {
+            return;
+        }
+
+        this.animations.step(deltaTime);
+        this.frame = this.animations.frame;
     }
 
     drawImage(ctx, x, y) {
