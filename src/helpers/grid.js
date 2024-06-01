@@ -5,6 +5,10 @@ export const gridCells = number => {
 }
 
 export const isSpaceFree = (walls, x, y) => {
+    // round the x and y to the nearest whole number
+    x = Math.round(x);
+    y = Math.round(y);
+
     // convert to string to use as key
     const str = `${x},${y}`;
     // check if the key is present in the walls set
