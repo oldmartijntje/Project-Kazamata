@@ -6,6 +6,7 @@ export class GameObject {
         this.position = position ?? new Vector2(0, 0);
         this.children = [];
         this.parent = null;
+        this.hasBeenInitiated = false;
     }
 
     // First entry point of the loop
@@ -13,8 +14,18 @@ export class GameObject {
         // call the stepEntry method for all children
         this.children.forEach(child => child.stepEntry(deltaTime, root));
 
+        // if the ready method has not been called yet, call it
+        if (!this.hasBeenInitiated) {
+            this.hasBeenInitiated = true;
+            this.onInit();
+        }
+
         // call the step method
         this.step(deltaTime, root);
+    }
+
+    onInit() {
+        // override this method
     }
 
     // called once per frame

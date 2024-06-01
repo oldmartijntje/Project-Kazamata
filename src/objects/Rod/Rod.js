@@ -15,13 +15,14 @@ export class Rod extends GameObject {
             position: new Vector2(0, -10),
         });
         this.addChild(sprite);
+    }
 
+    onInit() {
         events.on('HERO_POSITION', this, (value) => {
             if (this.position.x === Math.round(value.position.x) && this.position.y === Math.round(value.position.y)) {
                 this.onCollideWithHero();
             }
         });
-
     }
 
 

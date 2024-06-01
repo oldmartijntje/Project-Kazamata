@@ -14,7 +14,7 @@ export class Inventory extends GameObject {
         ]
         this.nextId = 0;
 
-        events.on('HERO_PICK_UP_ITEM', this, (value) => {
+        events.on('HERO_PICK_UP_ITEM', this, (value) => { // move to OnInit
             this.items.push({
                 id: this.nextId++,
                 image: value.image,
@@ -36,6 +36,10 @@ export class Inventory extends GameObject {
             });
             this.addChild(sprite);
         });
+    }
+
+    onInit() {
+        console.log('Inventory initialized');
     }
 
     removeFromInventory(id) {

@@ -1,5 +1,4 @@
-- [ ] FPS counter setting
-- [ ] ~~make movements cancellable (so you can do the pokemon jiggle)~~
+- [ ] FPS counter (setting)
 - [ ] base walls on tiles
 - [ ] dynamically load scenes
 - [ ] convert to typescript
@@ -10,3 +9,4 @@
 - [ ] rename HERO to PLAYER
 - [ ] make player things (item pickup and inventory) an Entity class instead of Player
 - [ ] places with 'nextId', either use UUID or make it loadable for savestates (cause now it always starts at 0)
+- [ ] on things like inventory, OnInit won't be called. (maybe an ignore camera offset boolean which removes the offset on rendering by adding a negative offset of the camera to the sprite.)
