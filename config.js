@@ -6,5 +6,6 @@ export const config = {
         "downKeys": ["ArrowDown", "s"],
         "leftKeys": ["ArrowLeft", "a"],
         "rightKeys": ["ArrowRight", "d"],
-    }
+    },
+    "gridSize": 16,
 };

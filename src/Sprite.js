@@ -1,4 +1,5 @@
 import { Vector2 } from "./Vector2.js";
+import { config } from '../config.js';
 
 export class Sprite {
     constructor({
@@ -11,7 +12,7 @@ export class Sprite {
         position // position of the sprite
     }) {
         this.resource = resource;
-        this.frameSize = frameSize ?? new Vector2(16, 16);
+        this.frameSize = frameSize ?? new Vector2(config["gridSize"], config["gridSize"]);
         this.hFrames = hFrames ?? 1;
         this.vFrames = vFrames ?? 1;
         this.frame = frame ?? 0;

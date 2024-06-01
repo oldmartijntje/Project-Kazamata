@@ -3,6 +3,9 @@ import { Sprite } from './src/Sprite.js';
 import { Vector2 } from "./src/Vector2.js";
 import { GameLoop } from "./src/GameLoop.js";
 import { Input, LEFT, RIGHT, UP, DOWN } from "./src/Input.js";
+import { gridCells } from './src/helpers/grid.js';
+import { moveTowards } from './src/helpers/moveTowards.js';
+import { config } from './config.js';
 
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
@@ -23,30 +26,55 @@ const hero = new Sprite({
     vFrames: 8,
     frame: 1,
     frameSize: new Vector2(32, 32),
+    position: new Vector2(gridCells(0), gridCells(0)),
 });
+
+const heroDestinationPosition = hero.position.duplicate();
 
 const shadow = new Sprite({
     resource: resources.images.shadow,
     frameSize: new Vector2(32, 32),
 });
 
-const heroPos = new Vector2(16 * 6, 16 * 5);
 const input = new Input();
 
+
 const update = () => {
+
+    const distance = moveTowards(hero, heroDestinationPosition, 1);
+    const hasArrived = distance <= 1;
+    // if we've arrived, try to move in the direction of the input
+    if (hasArrived) {
+        tryMove();
+    }
+}
+
+const tryMove = () => {
+    if (!input.direction) {
+        return;
+    }
+
+    let nextX = heroDestinationPosition.x;
+    let nextY = heroDestinationPosition.y;
+    const gridSize = config["gridSize"];
+
     if (input.direction === LEFT) {
-        heroPos.x -= 1;
+        nextX -= gridSize;
         hero.frame = 9;
     } else if (input.direction === RIGHT) {
-        heroPos.x += 1;
+        nextX += gridSize;
         hero.frame = 3;
     } else if (input.direction === UP) {
-        heroPos.y -= 1;
+        nextY -= gridSize;
         hero.frame = 6;
     } else if (input.direction === DOWN) {
-        heroPos.y += 1;
+        nextY += gridSize;
         hero.frame = 0;
     }
+
+    // check if the next position is valid
+    heroDestinationPosition.x = nextX;
+    heroDestinationPosition.y = nextY;
 }
 
 const draw = () => {
@@ -55,8 +83,8 @@ const draw = () => {
 
     // center the hero
     const heroOffset = new Vector2(-8, -21);
-    const heroPosX = heroPos.x + heroOffset.x;
-    const heroPosY = heroPos.y + 1 + heroOffset.y;
+    const heroPosX = hero.position.x + heroOffset.x;
+    const heroPosY = hero.position.y + 1 + heroOffset.y;
 
     shadow.drawImage(ctx, heroPosX, heroPosY);
     hero.drawImage(ctx, heroPosX, heroPosY);
