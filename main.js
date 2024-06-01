@@ -1,7 +1,7 @@
 import { resources } from './src/Resource.js';
 import { Sprite } from './src/Sprite.js';
-import { Vector2 } from "./src/vector2";
-import { GameLoop } from "./src/GameLoop";
+import { Vector2 } from "./src/vector2.js";
+import { GameLoop } from "./src/GameLoop.js";
 
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
