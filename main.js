@@ -1,6 +1,6 @@
 import { resources } from './src/Resource.js';
 import { Sprite } from './src/Sprite.js';
-import { Vector2 } from "./src/vector2.js";
+import { Vector2 } from "./src/Vector2.js";
 import { GameLoop } from "./src/GameLoop.js";
 import { Input, LEFT, RIGHT, UP, DOWN } from "./src/Input.js";
 
