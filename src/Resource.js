@@ -1,3 +1,5 @@
+import { config } from "../config.js";
+
 class Resources {
     constructor() {
         this.toLoad = {
@@ -13,9 +15,9 @@ class Resources {
         // Define the base URL for assets
         var baseUrl = '';
         try {
-            baseUrl = process.env.NODE_ENV === 'production' ? '/your-app-name/' : '';
+            baseUrl = process.env.NODE_ENV === 'production' ? "/" + config['baseUrl'] + "/" : '';
         } catch (e) {
-            baseUrl = '/your-app-name/'
+            baseUrl = "/" + config['baseUrl'] + "/";
         }
 
         // Load all images
