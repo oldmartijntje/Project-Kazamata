@@ -6,7 +6,6 @@ import { Input } from "./src/Input.js";
 import { gridCells } from './src/helpers/grid.js';
 import { GameObject } from './src/GameObject.js';
 import { Hero } from './src/objects/Hero/Hero.js';
-import { events } from './src/Events.js';
 import { Camera } from './src/Camera.js';
 
 const canvas = document.querySelector('#game-canvas');
