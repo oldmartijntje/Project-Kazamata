@@ -33,18 +33,29 @@ export class Input {
             }
         });
         document.addEventListener('DOMContentLoaded', () => {
+            // adding physical mobile buttons
             const leftButton = document.getElementById('leftButton');
             const rightButton = document.getElementById('rightButton');
             const upButton = document.getElementById('upButton');
             const downButton = document.getElementById('downButton');
-            leftButton.addEventListener('mousedown', () => this.onKeyPressed(LEFT));
-            leftButton.addEventListener('mouseup', () => this.onKeyReleased(LEFT));
-            rightButton.addEventListener('mousedown', () => this.onKeyPressed(RIGHT));
-            rightButton.addEventListener('mouseup', () => this.onKeyReleased(RIGHT));
-            upButton.addEventListener('mousedown', () => this.onKeyPressed(UP));
-            upButton.addEventListener('mouseup', () => this.onKeyReleased(UP));
-            downButton.addEventListener('mousedown', () => this.onKeyPressed(DOWN));
-            downButton.addEventListener('mouseup', () => this.onKeyReleased(DOWN));
+
+            const addEventListeners = (button, direction) => {
+                button.addEventListener('mousedown', () => this.onKeyPressed(direction));
+                button.addEventListener('mouseup', () => this.onKeyReleased(direction));
+                button.addEventListener('touchstart', (event) => {
+                    event.preventDefault(); // Prevent default touch behavior
+                    this.onKeyPressed(direction);
+                });
+                button.addEventListener('touchend', (event) => {
+                    event.preventDefault(); // Prevent default touch behavior
+                    this.onKeyReleased(direction);
+                });
+            }
+
+            addEventListeners(leftButton, LEFT);
+            addEventListeners(rightButton, RIGHT);
+            addEventListeners(upButton, UP);
+            addEventListeners(downButton, DOWN);
         });
     }
 
