@@ -8,6 +8,7 @@ import { GameObject } from './src/GameObject.js';
 import { Hero } from './src/objects/Hero/Hero.js';
 import { Camera } from './src/Camera.js';
 import { Rod } from './src/objects/Rod/Rod.js';
+import { Inventory } from './src/objects/Inventory/Inventory.js';
 
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
@@ -31,11 +32,15 @@ mainScene.addChild(groundSprite);
 const hero = new Hero(gridCells(10), gridCells(4));
 mainScene.addChild(hero);
 
-const rod = new Rod(gridCells(11), gridCells(3));
-mainScene.addChild(rod);
-
 const camera = new Camera();
 mainScene.addChild(camera);
+
+const rod = new Rod(gridCells(11), gridCells(3));
+mainScene.addChild(rod);
+mainScene.addChild(new Rod(gridCells(12), gridCells(3)));
+mainScene.addChild(new Rod(gridCells(13), gridCells(3)));
+
+const inventory = new Inventory();
 
 // needs to happen if you want to controll the player
 mainScene.input = new Input();
@@ -51,6 +56,7 @@ const draw = () => {
     // draw sky, when attached to mainScene it will move with the camera
     skySprite.draw(ctx, 0, 0);
 
+
     // save current state (for camera offset)
     ctx.save();
 
@@ -61,6 +67,9 @@ const draw = () => {
 
     // restore to original state
     ctx.restore();
+
+    // Draw Anything above the camera
+    inventory.draw(ctx, 0, 0);
 }
 
 

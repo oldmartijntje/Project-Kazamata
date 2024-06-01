@@ -4,7 +4,9 @@
 - [ ] dynamically load scenes
 - [ ] convert to typescript
     - [ ] Give all methods /** */ comments
+- [ ] Turn the main branch into the gameEngine, and the game branch into the DEMO.
 - [ ] a file with all Event `const` variables
 - [ ] use states for things like picking up, instead of seperate checks etc for every single option
 - [ ] rename HERO to PLAYER
 - [ ] make player things (item pickup and inventory) an Entity class instead of Player
+- [ ] places with 'nextId', either use UUID or make it loadable for savestates (cause now it always starts at 0)
