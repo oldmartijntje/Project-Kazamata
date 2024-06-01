@@ -1,2 +1,3 @@
 - [ ] FPS counter setting
 - [ ] make movements cancellable (so you can do the pokemon jiggle)
+- [ ] base walls on tiles
