@@ -32,7 +32,20 @@ export class Input {
                 this.onKeyReleased(RIGHT);
             }
         });
-
+        document.addEventListener('DOMContentLoaded', () => {
+            const leftButton = document.getElementById('leftButton');
+            const rightButton = document.getElementById('rightButton');
+            const upButton = document.getElementById('upButton');
+            const downButton = document.getElementById('downButton');
+            leftButton.addEventListener('mousedown', () => this.onKeyPressed(LEFT));
+            leftButton.addEventListener('mouseup', () => this.onKeyReleased(LEFT));
+            rightButton.addEventListener('mousedown', () => this.onKeyPressed(RIGHT));
+            rightButton.addEventListener('mouseup', () => this.onKeyReleased(RIGHT));
+            upButton.addEventListener('mousedown', () => this.onKeyPressed(UP));
+            upButton.addEventListener('mouseup', () => this.onKeyReleased(UP));
+            downButton.addEventListener('mousedown', () => this.onKeyPressed(DOWN));
+            downButton.addEventListener('mouseup', () => this.onKeyReleased(DOWN));
+        });
     }
 
     get direction() {
