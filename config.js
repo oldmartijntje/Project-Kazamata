@@ -1,3 +1,4 @@
 export const config = {
-    "baseUrl": "Project-Kazamata"
+    "baseUrl": "Project-Kazamata",
+    "publicPath": "public",
 };

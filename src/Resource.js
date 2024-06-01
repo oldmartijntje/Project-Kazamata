@@ -15,9 +15,9 @@ class Resources {
         // Define the base URL for assets
         var baseUrl = '';
         try {
-            baseUrl = process.env.NODE_ENV === 'production' ? "/" + config['baseUrl'] + "/public/" : '';
+            baseUrl = process.env.NODE_ENV === 'production' ? "/" + config['baseUrl'] + "/" + config['publicPath'] + "/" : '';
         } catch (e) {
-            baseUrl = "/" + config['baseUrl'] + "/public/";
+            baseUrl = "/" + config['baseUrl'] + "/" + config['publicPath'] + "/";
         }
 
         // Load all images
