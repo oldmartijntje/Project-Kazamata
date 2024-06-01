@@ -1,5 +1,4 @@
 import { resources } from './src/Resource.js';
-import './style.css'
 
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
