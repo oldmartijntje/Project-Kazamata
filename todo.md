@@ -5,3 +5,6 @@
 - [ ] convert to typescript
     - [ ] Give all methods /** */ comments
 - [ ] a file with all Event `const` variables
+- [ ] use states for things like picking up, instead of seperate checks etc for every single option
+- [ ] rename HERO to PLAYER
+- [ ] make player things (item pickup and inventory) an Entity class instead of Player

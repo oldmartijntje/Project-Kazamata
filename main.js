@@ -7,6 +7,7 @@ import { gridCells } from './src/helpers/grid.js';
 import { GameObject } from './src/GameObject.js';
 import { Hero } from './src/objects/Hero/Hero.js';
 import { Camera } from './src/Camera.js';
+import { Rod } from './src/objects/Rod/Rod.js';
 
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
@@ -27,8 +28,11 @@ const groundSprite = new Sprite({
 });
 mainScene.addChild(groundSprite);
 
-const hero = new Hero(gridCells(6), gridCells(5));
+const hero = new Hero(gridCells(10), gridCells(4));
 mainScene.addChild(hero);
+
+const rod = new Rod(gridCells(11), gridCells(3));
+mainScene.addChild(rod);
 
 const camera = new Camera();
 mainScene.addChild(camera);
