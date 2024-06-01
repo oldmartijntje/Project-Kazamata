@@ -10,10 +10,13 @@ class Resources {
 
         this.images = {};
 
+        // Define the base URL for assets
+        const baseUrl = process.env.NODE_ENV === 'production' ? '/your-app-name/' : '';
+
         // Load all images
         Object.keys(this.toLoad).forEach((key) => {
             const img = new Image();
-            img.src = this.toLoad[key];
+            img.src = baseUrl + this.toLoad[key];
             this.images[key] = {
                 image: img,
                 isLoaded: false
