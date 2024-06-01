@@ -6,6 +6,7 @@ import { Input } from "./src/Input.js";
 import { gridCells } from './src/helpers/grid.js';
 import { GameObject } from './src/GameObject.js';
 import { Hero } from './src/objects/Hero/Hero.js';
+import { events } from './src/Events.js';
 
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
@@ -32,6 +33,10 @@ mainScene.addChild(hero);
 
 // needs to happen if you want to controll the player
 mainScene.input = new Input();
+
+events.on('move', mainScene, (value) => {
+    console.log("hero moved!", value);
+});
 
 
 const update = (deltaTime) => {

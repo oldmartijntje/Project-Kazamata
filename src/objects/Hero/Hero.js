@@ -10,6 +10,7 @@ import { FrameIndexPattern } from "../../FrameIndexPattern.js";
 import { moveTowards } from "../../helpers/moveTowards.js";
 import { config } from '../../../config.js';
 import { walls } from "../../levels/level1.js";
+import { events } from "../../Events.js";
 
 
 export class Hero extends GameObject {
@@ -56,6 +57,16 @@ export class Hero extends GameObject {
         if (hasArrived) {
             this.tryMove(root);
         }
+        this.tryEmitPosition()
+    }
+
+    tryEmitPosition() {
+        if (this.lastPosition && this.lastPosition.x === this.position.x && this.lastPosition.y === this.position.y) {
+            return;
+        } else if (this.lastPosition) {
+            events.emit('move', this.position, this.position);
+        }
+        this.lastPosition = this.position.duplicate();
     }
 
     tryMove(root) {

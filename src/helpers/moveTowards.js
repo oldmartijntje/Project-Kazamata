@@ -3,7 +3,6 @@ export function moveTowards(person, destinationPosition, speed) {
     let distanceToTravelY = destinationPosition.y - person.position.y;
 
     let distance = Math.sqrt(distanceToTravelX ** 2 + distanceToTravelY ** 2);
-
     if (distance <= speed) {
         // We've arrived, snap to destination
         person.position.x = destinationPosition.x;

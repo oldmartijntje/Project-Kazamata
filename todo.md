@@ -1,3 +1,6 @@
 - [ ] FPS counter setting
 - [ ] make movements cancellable (so you can do the pokemon jiggle)
 - [ ] base walls on tiles
+- [ ] dynamically load scenes
+- [ ] convert to typescript
+    - [ ] Give all methods /** */ comments
