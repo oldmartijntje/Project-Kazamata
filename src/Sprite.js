@@ -1,7 +1,8 @@
 import { Vector2 } from "./Vector2.js";
 import { config } from '../config.js';
+import { GameObject } from "./GameObject.js";
 
-export class Sprite {
+export class Sprite extends GameObject {
     constructor({
         resource, // image resource
         frameSize, // size of the crop
@@ -12,6 +13,9 @@ export class Sprite {
         position, // position of the sprite
         animations, // animation of the sprite
     }) {
+        super({
+            position: position ?? new Vector2(0, 0),
+        });
         this.resource = resource;
         this.frameSize = frameSize ?? new Vector2(config["gridSize"], config["gridSize"]);
         this.hFrames = hFrames ?? 1;
@@ -65,7 +69,6 @@ export class Sprite {
 
         const frameSizeX = this.frameSize.x;
         const frameSizeY = this.frameSize.y;
-
         ctx.drawImage(
             this.resource.image,
             frameCordX,
