@@ -14,12 +14,11 @@ export class Main extends GameObject {
     }
 
     onInit() {
+        this.inventory.onInit();
+
         events.on('CHANGE_LEVEL', this, newLevelInstance => {
             this.setLevel(newLevelInstance);
         });
-        // this.input.onInit(); // Input is not a game object, so we don't need to call the onInit()
-        this.camera.onInit();
-        this.inventory.onInit();
     }
 
     setLevel(newLevelInstance) {

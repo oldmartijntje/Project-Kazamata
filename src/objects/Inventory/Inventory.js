@@ -14,15 +14,6 @@ export class Inventory extends GameObject {
         ]
         this.nextId = 0;
 
-        events.on('HERO_PICK_UP_ITEM', this, (value) => { // move to OnInit
-            this.items.push({
-                id: this.nextId++,
-                image: value.image,
-            });
-            console.log(this.items);
-            this.renderInventory();
-        });
-
         this.renderInventory();
     }
 
@@ -38,13 +29,20 @@ export class Inventory extends GameObject {
         });
     }
 
-    onInit() {
-        console.log('Inventory initialized');
-    }
-
     removeFromInventory(id) {
         this.items = this.items.filter(item => item.id !== id);
         this.renderInventory();
+    }
+
+    onInit() {
+        events.on('HERO_PICK_UP_ITEM', this, (value) => { // move to OnInit
+            this.items.push({
+                id: this.nextId++,
+                image: value.image,
+            });
+            console.log(this.items);
+            this.renderInventory();
+        });
     }
 
 
