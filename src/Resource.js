@@ -30,12 +30,18 @@ class Resources {
         Object.keys(this.toLoad).forEach((key) => {
             const img = new Image();
             img.src = baseUrl + this.toLoad[key];
+
             this.images[key] = {
                 image: img,
                 isLoaded: false
             };
             img.onload = () => {
-                this.images[key].isLoaded = true;
+                // chek if the image exists and didn't get 404
+                if (img.width > 0) {
+                    this.images[key].isLoaded = true;
+                } else {
+                    console.error(`Failed to load image: ${key}`);
+                }
             }
         });
     }

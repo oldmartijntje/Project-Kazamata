@@ -9,6 +9,7 @@ import { Rod } from "../objects/Rod/Rod.js";
 import { config } from "../../config.js";
 import { CaveLevel1 } from "./CaveLevel1.js";
 import { events } from "../Events.js";
+import { Npc } from "../objects/Npc/Npc.js";
 
 const DEFAULT_HERO_POSITION = new Vector2(gridCells(10), gridCells(4));
 
@@ -34,6 +35,9 @@ export class OutdoorLevel1 extends Level {
         this.addChild(rod);
         this.addChild(new Rod(gridCells(12), gridCells(3)));
         this.addChild(new Rod(gridCells(13), gridCells(3)));
+
+        const npc = new Npc(gridCells(6), gridCells(3));
+        this.addChild(npc);
 
         this.heroStartPosition = params.heroPosition ?? DEFAULT_HERO_POSITION;
         const hero = new Hero(this.heroStartPosition.x, this.heroStartPosition.y);
