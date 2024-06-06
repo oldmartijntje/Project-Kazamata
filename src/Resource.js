@@ -14,7 +14,6 @@ class Resources {
             caveGround: "sprites/cave-ground.png",
 
             knight: "sprites/knight-sheet-1.png",
-            test: "sprites/text-box.png"
         }
 
         this.images = {};
