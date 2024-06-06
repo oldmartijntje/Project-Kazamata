@@ -11,44 +11,17 @@ import { Rod } from './src/objects/Rod/Rod.js';
 import { Inventory } from './src/objects/Inventory/Inventory.js';
 import { Exit } from './src/objects/Exit/Exit.js';
 import { events } from './src/Events.js';
+import { Main } from './src/objects/Main/Main.js';
+import { OutdoorLevel1 } from './src/levels/OutdoorLevel1.js';
 
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
 
 // In the future, move this into a level object.
-const mainScene = new GameObject({
+const mainScene = new Main({
     position: new Vector2(0, 0),
 });
-
-const skySprite = new Sprite({
-    resource: resources.images.sky,
-    frameSize: new Vector2(320, 180),
-});
-
-const groundSprite = new Sprite({
-    resource: resources.images.ground,
-    frameSize: new Vector2(320, 180),
-});
-mainScene.addChild(groundSprite);
-
-const exit = new Exit(gridCells(10), gridCells(6));
-mainScene.addChild(exit);
-
-const hero = new Hero(gridCells(10), gridCells(4));
-mainScene.addChild(hero);
-
-const camera = new Camera();
-mainScene.addChild(camera);
-
-const rod = new Rod(gridCells(11), gridCells(3));
-mainScene.addChild(rod);
-mainScene.addChild(new Rod(gridCells(12), gridCells(3)));
-mainScene.addChild(new Rod(gridCells(13), gridCells(3)));
-
-const inventory = new Inventory();
-
-// needs to happen if you want to controll the player
-mainScene.input = new Input();
+mainScene.setLevel(new OutdoorLevel1());
 
 events.on('HERO_EXITS', mainScene, () => {
     console.log('Hero exits');
@@ -62,23 +35,23 @@ const update = (deltaTime) => {
 const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // draw sky, when attached to mainScene it will move with the camera
-    skySprite.draw(ctx, 0, 0);
-
+    mainScene.drawBackground(ctx);
 
     // save current state (for camera offset)
     ctx.save();
 
     //offset by camera position
-    ctx.translate(camera.position.x, camera.position.y);
+    if (mainScene.camera) {
+        ctx.translate(mainScene.camera.position.x, mainScene.camera.position.y);
+    }
 
     mainScene.draw(ctx, 0, 0);
 
     // restore to original state
     ctx.restore();
 
-    // Draw Anything above the camera
-    inventory.draw(ctx, 0, 0);
+    // draw anything above the game world
+    mainScene.drawForeground(ctx);
 }
 
 

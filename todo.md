@@ -11,6 +11,7 @@
 - [ ] places with 'nextId', either use UUID or make it loadable for savestates (cause now it always starts at 0)
 - [ ] on things like inventory, OnInit won't be called. (maybe an ignore camera offset boolean which removes the offset on rendering by adding a negative offset of the camera to the sprite.)
 - [x] add math.round to colision checks ( this.destinationPosition or inside the function)
+- [ ] rework the position system so that it only multiplies the location by 16 whenever drawing.
 
 - encorperation:
     - [ ] add to website links

@@ -9,7 +9,6 @@ import { PICK_UP_DOWN, STAND_DOWN, STAND_LEFT, STAND_RIGHT, STAND_UP, WALK_DOWN,
 import { FrameIndexPattern } from "../../FrameIndexPattern.js";
 import { moveTowards } from "../../helpers/moveTowards.js";
 import { config } from '../../../config.js';
-import { walls } from "../../levels/level1.js";
 import { events } from "../../Events.js";
 
 
@@ -146,7 +145,7 @@ export class Hero extends GameObject {
 
         // check if the next position is valid
 
-        if (isSpaceFree(walls, nextX, nextY)) {
+        if (isSpaceFree(root.level.walls, nextX, nextY)) {
             this.destinationPosition = calculateNearestGridPosition(nextX, nextY);
         }
     }
