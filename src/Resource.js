@@ -36,12 +36,7 @@ class Resources {
                 isLoaded: false
             };
             img.onload = () => {
-                // chek if the image exists and didn't get 404
-                if (img.width > 0) {
-                    this.images[key].isLoaded = true;
-                } else {
-                    console.error(`Failed to load image: ${key}`);
-                }
+                this.images[key].isLoaded = true;
             }
         });
     }
