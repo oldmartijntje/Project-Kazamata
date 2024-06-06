@@ -1,6 +1,6 @@
 export const config = {
     "baseUrl": "Project-Kazamata",
-    "publicPath": "public",
+    "publicPath": "",
     "keys": {
         "upKeys": ["ArrowUp", "w"],
         "downKeys": ["ArrowDown", "s"],
