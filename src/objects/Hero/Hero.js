@@ -1,6 +1,6 @@
 import { Animations } from "../../Animations.js";
 import { GameObject } from "../../GameObject.js";
-import { gridCells, isSpaceFree } from "../../helpers/grid.js";
+import { calculateNearestGridPosition, gridCells, isSpaceFree } from "../../helpers/grid.js";
 import { resources } from '../../Resource.js';
 import { DOWN, LEFT, RIGHT, UP } from "../../Input.js";
 import { Sprite } from "../../Sprite.js";
@@ -59,6 +59,7 @@ export class Hero extends GameObject {
 
     step(deltaTime, root) {
 
+
         if (this.itemPickupTime > 0) {
             this.workOnItemPickup(deltaTime);
             return;
@@ -66,6 +67,7 @@ export class Hero extends GameObject {
 
         const distance = moveTowards(this, this.destinationPosition, 1);
         const hasArrived = distance <= 1;
+
         // if we've arrived, try to move in the direction of the input
         if (hasArrived) {
             this.tryMove(root);
@@ -83,6 +85,8 @@ export class Hero extends GameObject {
 
     onPickUpItem({ image, position }) {
         // make sure we are right on top of the item
+        const pos = this.position.duplicate();
+        this.position = calculateNearestGridPosition(pos.x, pos.y);
         this.destinationPosition = this.position.duplicate();
 
         this.itemPickupTime = 500; // ms
@@ -143,8 +147,7 @@ export class Hero extends GameObject {
         // check if the next position is valid
 
         if (isSpaceFree(walls, nextX, nextY)) {
-            this.destinationPosition.x = nextX;
-            this.destinationPosition.y = nextY;
+            this.destinationPosition = calculateNearestGridPosition(nextX, nextY);
         }
     }
 

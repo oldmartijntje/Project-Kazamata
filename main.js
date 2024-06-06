@@ -9,6 +9,8 @@ import { Hero } from './src/objects/Hero/Hero.js';
 import { Camera } from './src/Camera.js';
 import { Rod } from './src/objects/Rod/Rod.js';
 import { Inventory } from './src/objects/Inventory/Inventory.js';
+import { Exit } from './src/objects/Exit/Exit.js';
+import { events } from './src/Events.js';
 
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
@@ -29,6 +31,9 @@ const groundSprite = new Sprite({
 });
 mainScene.addChild(groundSprite);
 
+const exit = new Exit(gridCells(10), gridCells(6));
+mainScene.addChild(exit);
+
 const hero = new Hero(gridCells(10), gridCells(4));
 mainScene.addChild(hero);
 
@@ -44,6 +49,10 @@ const inventory = new Inventory();
 
 // needs to happen if you want to controll the player
 mainScene.input = new Input();
+
+events.on('HERO_EXITS', mainScene, () => {
+    console.log('Hero exits');
+});
 
 
 const update = (deltaTime) => {
