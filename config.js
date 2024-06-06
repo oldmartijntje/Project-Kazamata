@@ -2,10 +2,10 @@ export const config = {
     "baseUrl": "Project-Kazamata",
     "publicPath": "public",
     "keys": {
-        "upKeys": ["ArrowUp", "w"],
-        "downKeys": ["ArrowDown", "s"],
-        "leftKeys": ["ArrowLeft", "a"],
-        "rightKeys": ["ArrowRight", "d"],
+        "upKeys": ["ArrowUp", "KeyW"],
+        "downKeys": ["ArrowDown", "KeyS"],
+        "leftKeys": ["ArrowLeft", "KeyA"],
+        "rightKeys": ["ArrowRight", "KeyD"],
     },
     "sizes": {
         "gridSize": 16,

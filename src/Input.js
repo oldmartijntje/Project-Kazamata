@@ -10,25 +10,25 @@ export class Input {
         this.heldDirections = [];
 
         document.addEventListener('keydown', (event) => {
-            if (config.keys.upKeys.includes(event.key)) {
+            if (config.keys.upKeys.includes(event.code)) {
                 this.onKeyPressed(UP);
-            } else if (config.keys.downKeys.includes(event.key)) {
+            } else if (config.keys.downKeys.includes(event.code)) {
                 this.onKeyPressed(DOWN);
-            } else if (config.keys.leftKeys.includes(event.key)) {
+            } else if (config.keys.leftKeys.includes(event.code)) {
                 this.onKeyPressed(LEFT);
-            } else if (config.keys.rightKeys.includes(event.key)) {
+            } else if (config.keys.rightKeys.includes(event.code)) {
                 this.onKeyPressed(RIGHT);
             }
         });
 
         document.addEventListener('keyup', (event) => {
-            if (config.keys.upKeys.includes(event.key)) {
+            if (config.keys.upKeys.includes(event.code)) {
                 this.onKeyReleased(UP);
-            } else if (config.keys.downKeys.includes(event.key)) {
+            } else if (config.keys.downKeys.includes(event.code)) {
                 this.onKeyReleased(DOWN);
-            } else if (config.keys.leftKeys.includes(event.key)) {
+            } else if (config.keys.leftKeys.includes(event.code)) {
                 this.onKeyReleased(LEFT);
-            } else if (config.keys.rightKeys.includes(event.key)) {
+            } else if (config.keys.rightKeys.includes(event.code)) {
                 this.onKeyReleased(RIGHT);
             }
         });
