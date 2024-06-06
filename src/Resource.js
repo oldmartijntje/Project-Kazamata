@@ -25,6 +25,7 @@ class Resources {
         } catch (e) {
             baseUrl = "/" + config['baseUrl'] + "/" + config['publicPath'] + "/";
         }
+        console.log(`"${baseUrl}"`);
 
         // Load all images
         Object.keys(this.toLoad).forEach((key) => {
