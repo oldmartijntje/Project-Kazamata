@@ -144,9 +144,16 @@ export class Hero extends GameObject {
         this.facingDirection = input.direction ?? this.facingDirection;
 
         // check if the next position is valid
-
-        if (isSpaceFree(root.level.walls, nextX, nextY)) {
-            this.destinationPosition = calculateNearestGridPosition(nextX, nextY);
+        const spaceIsFree = isSpaceFree(root.level.walls, nextX, nextY);
+        if (spaceIsFree) {
+            // there is no wall in the way
+            // so check for entities that are solid
+            const solidBodyAtSpace = this.parent.children.find(child => {
+                return child.isSolid && child.position.x === nextX && child.position.y === nextY;
+            });
+            if (!solidBodyAtSpace) {
+                this.destinationPosition = calculateNearestGridPosition(nextX, nextY);
+            }
         }
     }
 

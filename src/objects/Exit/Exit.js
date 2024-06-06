@@ -10,6 +10,7 @@ export class Exit extends GameObject {
         super({
             position: new Vector2(x, y)
         });
+        this.drawLayer = "FLOOR"
 
         this.addChild(new Sprite({
             resource: resources.images.exit,

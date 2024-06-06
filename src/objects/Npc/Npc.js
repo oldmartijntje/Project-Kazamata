@@ -9,6 +9,8 @@ export class Npc extends GameObject {
             position: new Vector2(x, y)
         });
 
+        this.isSolid = true;
+
         const shadow = new Sprite({
             resource: resources.images.shadow,
             frameSize: new Vector2(32, 32),
