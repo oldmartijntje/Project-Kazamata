@@ -13,7 +13,7 @@ export class Rod extends GameObject {
         this.position = new Vector2(x, y);
         const sprite = new Sprite({
             resource: resources.images.rod,
-            position: new Vector2(0, -10),
+            position: new Vector2(0, -2),
         });
         this.addChild(sprite);
     }

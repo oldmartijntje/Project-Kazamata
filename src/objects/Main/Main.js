@@ -1,7 +1,8 @@
-import { Camera } from "../../Camera";
-import { GameObject } from "../../GameObject";
-import { Input } from "../../Input";
-import { Inventory } from "../Inventory/Inventory";
+import { Camera } from "../../Camera.js";
+import { events } from "../../Events.js";
+import { GameObject } from "../../GameObject.js";
+import { Input } from "../../Input.js";
+import { Inventory } from "../Inventory/Inventory.js";
 
 export class Main extends GameObject {
     constructor() {
@@ -10,6 +11,15 @@ export class Main extends GameObject {
         this.input = new Input();
         this.camera = new Camera();
         this.inventory = new Inventory();
+    }
+
+    onInit() {
+        events.on('CHANGE_LEVEL', this, newLevelInstance => {
+            this.setLevel(newLevelInstance);
+        });
+        // this.input.onInit(); // Input is not a game object, so we don't need to call the onInit()
+        this.camera.onInit();
+        this.inventory.onInit();
     }
 
     setLevel(newLevelInstance) {

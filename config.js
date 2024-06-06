@@ -7,5 +7,9 @@ export const config = {
         "leftKeys": ["ArrowLeft", "a"],
         "rightKeys": ["ArrowRight", "d"],
     },
-    "gridSize": 16,
+    "sizes": {
+        "gridSize": 16,
+        "canvasWidth": 320,
+        "canvasHeight": 180,
+    }
 };

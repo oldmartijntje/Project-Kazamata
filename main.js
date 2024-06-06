@@ -1,18 +1,7 @@
-import { resources } from './src/Resource.js';
-import { Sprite } from './src/Sprite.js';
 import { Vector2 } from "./src/Vector2.js";
 import { GameLoop } from "./src/GameLoop.js";
-import { Input } from "./src/Input.js";
-import { gridCells } from './src/helpers/grid.js';
-import { GameObject } from './src/GameObject.js';
-import { Hero } from './src/objects/Hero/Hero.js';
-import { Camera } from './src/Camera.js';
-import { Rod } from './src/objects/Rod/Rod.js';
-import { Inventory } from './src/objects/Inventory/Inventory.js';
-import { Exit } from './src/objects/Exit/Exit.js';
-import { events } from './src/Events.js';
 import { Main } from './src/objects/Main/Main.js';
-import { OutdoorLevel1 } from './src/levels/OutdoorLevel1.js';
+import { OutdoorLevel1 } from "./src/levels/OutdoorLevel1.js";
 
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
@@ -22,11 +11,6 @@ const mainScene = new Main({
     position: new Vector2(0, 0),
 });
 mainScene.setLevel(new OutdoorLevel1());
-
-events.on('HERO_EXITS', mainScene, () => {
-    console.log('Hero exits');
-});
-
 
 const update = (deltaTime) => {
     mainScene.stepEntry(deltaTime, mainScene);

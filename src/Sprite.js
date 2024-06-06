@@ -17,7 +17,7 @@ export class Sprite extends GameObject {
             position: position ?? new Vector2(0, 0),
         });
         this.resource = resource;
-        this.frameSize = frameSize ?? new Vector2(config["gridSize"], config["gridSize"]);
+        this.frameSize = frameSize ?? new Vector2(config.sizes.gridSize, config.sizes.gridSize);
         this.hFrames = hFrames ?? 1;
         this.vFrames = vFrames ?? 1;
         this.frame = frame ?? 0;

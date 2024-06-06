@@ -2,7 +2,7 @@ import { config } from '../../config.js';
 import { Vector2 } from '../Vector2.js';
 
 export const gridCells = number => {
-    return number * config["gridSize"];
+    return number * config.sizes.gridSize;
 }
 
 export const isSpaceFree = (walls, x, y) => {
@@ -18,7 +18,7 @@ export const isSpaceFree = (walls, x, y) => {
 }
 
 export const calculateNearestGridPosition = (x, y) => {
-    const gridSize = config["gridSize"];
+    const gridSize = config.sizes.gridSize;
     const gridX = Math.round(x / gridSize) * gridSize;
     const gridY = Math.round(y / gridSize) * gridSize;
     return new Vector2(gridX, gridY);

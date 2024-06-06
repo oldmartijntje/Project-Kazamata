@@ -126,7 +126,7 @@ export class Hero extends GameObject {
         nextY = Math.round(nextY);
 
 
-        const gridSize = config["gridSize"];
+        const gridSize = config.sizes.gridSize;
 
         if (input.direction === LEFT) {
             nextX -= gridSize;
