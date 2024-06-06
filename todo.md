@@ -15,6 +15,7 @@
 - [ ] rework the position system so that it only multiplies the location by 16 whenever drawing.
 - [ ] in GameObject, getDrawChildrenOrdered(), add a dict for layer types, with 1 -1 and 0 as options
     - [ ] or make FLOOR a const
+- [ ] onclick pathfinding (mostly for mobile players)
 
 - encorperation:
     - [ ] add to website links
