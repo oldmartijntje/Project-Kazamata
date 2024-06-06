@@ -21,9 +21,10 @@ class Resources {
         // Define the base URL for assets
         var baseUrl = '';
         try {
-            baseUrl = process.env.NODE_ENV === 'production' ? "/" + config['baseUrl'] + "/" + config['publicPath'] + "/" : '';
+            baseUrl = process.env.NODE_ENV === 'production' ? "/" + config['baseUrl'] + "/" + config['assetsPath'] + "/" : './' + config['assetsPath'] + '/';
         } catch (e) {
-            baseUrl = "/" + config['baseUrl'] + "/" + config['publicPath'] + "/";
+            console.log(e);
+            baseUrl = "/" + config['baseUrl'] + "/" + config['assetsPath'] + "/";
         }
         console.log(`"${baseUrl}"`);
 
