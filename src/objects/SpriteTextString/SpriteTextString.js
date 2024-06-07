@@ -4,10 +4,12 @@ import { Sprite } from "../../Sprite.js";
 import { Vector2 } from "../../Vector2.js";
 import { getCharacterFrame, getCharacterWidth } from "./SpriteFontMap.js";
 
+// Settings for the font
 const FONT_CHARACTER_OFFSET = 5;
 const FONT_CHARACTER_SPACE_BETWEEN = 1;
 const FONT_WORD_SPACE_BETWEEN = 3;
 
+// Settings for the text animation calculation
 const TEXTSPEED = 20;
 const CURRENT_SHOWING_INCREMENT = 1;
 const SHOWING_INDEX_INCREMENT = 1;
