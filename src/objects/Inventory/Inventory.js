@@ -12,6 +12,7 @@ export class Inventory extends GameObject {
         this.items = [
 
         ]
+        this.drawLayer = "HUD";
         this.nextId = 0;
 
         this.renderInventory();

@@ -16,16 +16,21 @@ export class Main extends GameObject {
         this.level = null;
         this.input = new Input();
         this.camera = new Camera();
-        this.inventory = new Inventory();
-        if (TEXT_MODE === TEXT_TTF_FONT) {
-            this.textBox = new TextBox();
-        } else {
-            this.textBox = new SpriteTextString("Hallo mijn naam is Gamemeneer en in Minecraft bouw ik boten.");
-        }
+
     }
 
     onInit() {
-        this.inventory.onInit();
+        const inventory = new Inventory();
+        this.addChild(inventory);
+        let textBox = null;
+        if (TEXT_MODE === TEXT_TTF_FONT) {
+            textBox = new TextBox();
+        } else {
+            textBox = new SpriteTextString("Hallo mijn naam is Gamemeneer en in Minecraft bouw ik boten.");
+        }
+        setTimeout(() => {
+            this.addChild(textBox);
+        }, 500);
 
         events.on('CHANGE_LEVEL', this, newLevelInstance => {
             this.setLevel(newLevelInstance);
@@ -44,8 +49,19 @@ export class Main extends GameObject {
         this.level?.background.drawImage(ctx, 0, 0)
     }
 
+    drawObjects(ctx) {
+        this.children.forEach(child => {
+            if (child.drawLayer !== "HUD") {
+                child.draw(ctx, 0, 0);
+            }
+        });
+    }
+
     drawForeground(ctx) {
-        this.inventory.draw(ctx, this.inventory.position.x, this.inventory.position.y);
-        this.textBox.draw(ctx, 0, 0);
+        this.children.forEach(child => {
+            if (child.drawLayer === "HUD") {
+                child.draw(ctx, 0, 0);
+            }
+        });
     }
 }
