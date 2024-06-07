@@ -5,6 +5,7 @@ body {
     background-color: #181818;
     overflow: hidden;
     image-rendering: pixelated;
+    color: #fff;
 }
 
 canvas {
@@ -15,4 +16,9 @@ canvas {
 button {
     padding: 1rem;
     border-radius: 10px;
+}
+
+@font-face {
+    font-family: fontRetroGaming;
+    src: url("./assets/fonts/Retro\ Gaming.ttf");
 }
