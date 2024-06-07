@@ -5,14 +5,14 @@ import { Vector2 } from "../../Vector2.js";
 import { getCharacterFrame, getCharacterWidth } from "./SpriteFontMap.js";
 
 // Settings for the font
-const FONT_CHARACTER_OFFSET = 5;
+const FONT_CHARACTER_OFFSET = 5; // every letter has 5 pixels of offset to the left in the sprite sheet
 const FONT_CHARACTER_SPACE_BETWEEN = 1;
 const FONT_WORD_SPACE_BETWEEN = 3;
 
 // Settings for the text animation calculation
-const TEXTSPEED = 20;
-const CURRENT_SHOWING_INCREMENT = 1;
-const SHOWING_INDEX_INCREMENT = 1;
+const TEXTSPEED = 20; // the speed of the ticks, lower is faster
+const CURRENT_SHOWING_INCREMENT = 1; // amount fo showing indexes needed per character
+const SHOWING_INDEX_INCREMENT = 1; // the increase in the showing index per tick
 
 export class SpriteTextString extends GameObject {
     constructor(str) {
