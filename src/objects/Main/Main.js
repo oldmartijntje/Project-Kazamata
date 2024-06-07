@@ -3,7 +3,12 @@ import { events } from "../../Events.js";
 import { GameObject } from "../../GameObject.js";
 import { Input } from "../../Input.js";
 import { Inventory } from "../Inventory/Inventory.js";
+import { SpriteTextString } from "../SpriteTextString/SpriteTextString.js";
 import { TextBox } from "../TextBox/TextBox.js";
+
+const TEXT_SPRITE_SHEET = 'TEXT_SPRITE_SHEET';
+const TEXT_TTF_FONT = 'TEXT_TTF_FONT';
+const TEXT_MODE = TEXT_SPRITE_SHEET;
 
 export class Main extends GameObject {
     constructor() {
@@ -12,7 +17,11 @@ export class Main extends GameObject {
         this.input = new Input();
         this.camera = new Camera();
         this.inventory = new Inventory();
-        this.textBox = new TextBox();
+        if (TEXT_MODE === TEXT_TTF_FONT) {
+            this.textBox = new TextBox();
+        } else {
+            this.textBox = new SpriteTextString("Hallo mijn naam is Gamemeneer en in Minecraft bouw ik boten.");
+        }
     }
 
     onInit() {

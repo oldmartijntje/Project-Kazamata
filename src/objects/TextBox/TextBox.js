@@ -3,10 +3,6 @@ import { Vector2 } from '../../Vector2.js';
 import { GameObject } from '../../GameObject.js';
 import { Sprite } from '../../Sprite.js';
 
-const TEXT_SPRITE_SHEET = 'TEXT_SPRITE_SHEET';
-const TEXT_TTF_FONT = 'TEXT_TTF_FONT';
-const TEXT_MODE = TEXT_TTF_FONT;
-
 export class TextBox extends GameObject {
     constructor() {
         super({
@@ -21,12 +17,6 @@ export class TextBox extends GameObject {
 
     drawImage(ctx, drawPosX, drawPosY) {
         this.backdrop.drawImage(ctx, drawPosX, drawPosY);
-        if (TEXT_MODE == TEXT_TTF_FONT) {
-            this.#drawTtfText(ctx, drawPosX, drawPosY);
-        }
-    }
-
-    #drawTtfText(ctx, drawPosX, drawPosY) {
         ctx.font = "10px fontRetroGaming";
         ctx.textAlign = "left";
         ctx.textBaseline = "top";
@@ -57,5 +47,4 @@ export class TextBox extends GameObject {
 
         ctx.fillText(line, drawPosX + PADDING_LEFT, drawPosY + PADDING_TOP);
     }
-
 }
