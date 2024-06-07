@@ -50,18 +50,38 @@ export class Hero extends GameObject {
         this.destinationPosition = this.position.duplicate();
         this.itemPickupTime = 0;
         this.itemPickupShell = null;
+        this.isLocked = false;
 
         events.on('HERO_PICK_UP_ITEM', this, (value) => {
             this.onPickUpItem(value);
         });
     }
 
+    onInit() {
+        events.on('START_TEXT_BOX', this, (value) => {
+            this.isLocked = true;
+        });
+
+        events.on('END_TEXT_BOX', this, (value) => {
+            this.isLocked = false;
+        });
+    }
+
     step(deltaTime, root) {
 
+        if (this.isLocked) {
+            return;
+        }
 
         if (this.itemPickupTime > 0) {
             this.workOnItemPickup(deltaTime);
             return;
+        }
+
+        /** @type {Input} */
+        const input = root.input;
+        if (input?.getActionJustPressed('Space')) {
+            events.emit('HERO_REQUESTS_ACTION', { position: this.position, direction: this.facingDirection });
         }
 
         const distance = moveTowards(this, this.destinationPosition, 1);

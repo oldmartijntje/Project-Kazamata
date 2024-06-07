@@ -22,18 +22,27 @@ export class Main extends GameObject {
     onInit() {
         const inventory = new Inventory();
         this.addChild(inventory);
-        let textBox = null;
-        if (TEXT_MODE === TEXT_TTF_FONT) {
-            textBox = new TextBox();
-        } else {
-            textBox = new SpriteTextString("Hallo mijn naam is Gamemeneer en in Minecraft bouw ik boten.");
-        }
-        setTimeout(() => {
-            this.addChild(textBox);
-        }, 500);
 
         events.on('CHANGE_LEVEL', this, newLevelInstance => {
             this.setLevel(newLevelInstance);
+        });
+
+        events.on('HERO_REQUESTS_ACTION', this, () => {
+            let textBox = null;
+            if (TEXT_MODE === TEXT_TTF_FONT) {
+                textBox = new TextBox();
+            } else {
+                textBox = new SpriteTextString("Hallo mijn naam is Gamemeneer en in Minecraft bouw ik boten.");
+            }
+            this.addChild(textBox);
+            console.log(this.children)
+            events.emit('START_TEXT_BOX');
+
+            // Remove the text box when the player presses space
+            const endingSub = events.on('END_TEXT_BOX', this, () => {
+                textBox.destroy();
+                events.off(endingSub);
+            });
         });
     }
 

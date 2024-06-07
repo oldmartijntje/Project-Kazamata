@@ -8,8 +8,13 @@ export const DOWN = 'DOWN';
 export class Input {
     constructor() {
         this.heldDirections = [];
+        this.keys = {};
+        this.lastKeys = {};
 
         document.addEventListener('keydown', (event) => {
+
+            this.keys[event.code] = true;
+
             if (config.keys.upKeys.includes(event.code)) {
                 this.onKeyPressed(UP);
             } else if (config.keys.downKeys.includes(event.code)) {
@@ -22,6 +27,9 @@ export class Input {
         });
 
         document.addEventListener('keyup', (event) => {
+
+            this.keys[event.code] = false;
+
             if (config.keys.upKeys.includes(event.code)) {
                 this.onKeyReleased(UP);
             } else if (config.keys.downKeys.includes(event.code)) {
@@ -61,6 +69,19 @@ export class Input {
 
     get direction() {
         return this.heldDirections[0];
+    }
+
+    update() {
+        // Diff the keys to get the keys that were pressed since the last update
+        this.lastKeys = { ...this.keys };
+    }
+
+    getActionJustPressed(keyCode) {
+        let justPressed = false;
+        if (this.keys[keyCode] && !this.lastKeys[keyCode]) {
+            justPressed = true;
+        }
+        return justPressed;
     }
 
     onKeyPressed(direction) {

@@ -1,3 +1,4 @@
+import { events } from "../../Events.js";
 import { GameObject } from "../../GameObject.js";
 import { resources } from "../../Resource.js";
 import { Sprite } from "../../Sprite.js";
@@ -52,11 +53,26 @@ export class SpriteTextString extends GameObject {
 
         // Text animation
         this.showingIndex = 0;
+        this.finalIndex = this.words.reduce((acc, word) => {
+            return acc + word.chars.length;
+        }, 0);
         this.textSpeed = TEXTSPEED;
         this.timeUntilNextShow = this.textSpeed;
     }
 
-    step(_deltaTime) {
+    step(_deltaTime, root) {
+
+        /** @type {Input} */
+        const input = root.input;
+        if (input?.getActionJustPressed('Space')) {
+            if (this.showingIndex < this.finalIndex) {
+                this.showingIndex = this.finalIndex;
+                return;
+            }
+            events.emit('END_TEXT_BOX');
+
+        }
+
         this.timeUntilNextShow -= _deltaTime;
         if (this.timeUntilNextShow <= 0) {
             this.showingIndex += SHOWING_INDEX_INCREMENT;

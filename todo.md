@@ -17,6 +17,7 @@
     - [ ] or make FLOOR a const
 - [ ] onclick pathfinding (mostly for mobile players)
 - [ ] merge SpriteTextString() and TextBox()
+- [ ] not all textboxes should lock the player.
 
 - encorperation:
     - [ ] add to website links
