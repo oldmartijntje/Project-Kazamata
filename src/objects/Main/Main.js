@@ -35,7 +35,6 @@ export class Main extends GameObject {
                 textBox = new SpriteTextString("Hallo mijn naam is Gamemeneer en in Minecraft bouw ik boten.");
             }
             this.addChild(textBox);
-            console.log(this.children)
             events.emit('START_TEXT_BOX');
 
             // Remove the text box when the player presses space
