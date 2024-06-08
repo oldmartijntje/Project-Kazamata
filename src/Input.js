@@ -4,6 +4,17 @@ export const LEFT = 'LEFT';
 export const RIGHT = 'RIGHT';
 export const UP = 'UP';
 export const DOWN = 'DOWN';
+export const SPACE = 'Space';
+
+export const APP_KEYS = { // The KEY is the valuye that the program will use. The VALUE is the key that the user will press.
+    UP: config.keys.upKeys,
+    DOWN: config.keys.downKeys,
+    LEFT: config.keys.leftKeys,
+    RIGHT: config.keys.rightKeys,
+    SPACE: [SPACE],
+};
+export const DIRECTIONS_KEYS = [LEFT, RIGHT, UP, DOWN];
+// all above has gotta go into a config file
 
 export class Input {
     constructor() {
@@ -12,63 +23,67 @@ export class Input {
         this.lastKeys = {};
 
         document.addEventListener('keydown', (event) => {
-
             this.keys[event.code] = true;
-
-            if (config.keys.upKeys.includes(event.code)) {
-                this.onKeyPressed(UP);
-            } else if (config.keys.downKeys.includes(event.code)) {
-                this.onKeyPressed(DOWN);
-            } else if (config.keys.leftKeys.includes(event.code)) {
-                this.onKeyPressed(LEFT);
-            } else if (config.keys.rightKeys.includes(event.code)) {
-                this.onKeyPressed(RIGHT);
-            }
+            this.getDirection(event.code, true);
         });
 
         document.addEventListener('keyup', (event) => {
-
             this.keys[event.code] = false;
-
-            if (config.keys.upKeys.includes(event.code)) {
-                this.onKeyReleased(UP);
-            } else if (config.keys.downKeys.includes(event.code)) {
-                this.onKeyReleased(DOWN);
-            } else if (config.keys.leftKeys.includes(event.code)) {
-                this.onKeyReleased(LEFT);
-            } else if (config.keys.rightKeys.includes(event.code)) {
-                this.onKeyReleased(RIGHT);
-            }
+            this.getDirection(event.code, false);
         });
         document.addEventListener('DOMContentLoaded', () => {
-            // adding physical mobile buttons
-            const leftButton = document.getElementById('leftButton');
-            const rightButton = document.getElementById('rightButton');
-            const upButton = document.getElementById('upButton');
-            const downButton = document.getElementById('downButton');
-
-            const addEventListeners = (button, direction) => {
-                button.addEventListener('mousedown', () => this.onKeyPressed(direction));
-                button.addEventListener('mouseup', () => this.onKeyReleased(direction));
-                button.addEventListener('touchstart', (event) => {
-                    event.preventDefault(); // Prevent default touch behavior
-                    this.onKeyPressed(direction);
-                });
-                button.addEventListener('touchend', (event) => {
-                    event.preventDefault(); // Prevent default touch behavior
-                    this.onKeyReleased(direction);
-                });
+            for (const direction of Object.keys(APP_KEYS)) {
+                for (const key of APP_KEYS[direction]) {
+                    const buttons = document.getElementsByClassName(key);
+                    for (const button of buttons) {
+                        button.addEventListener('mousedown', () => {
+                            if (DIRECTIONS_KEYS.includes(direction)) {
+                                this.onKeyPressed(direction);
+                            }
+                            this.keys[key] = true;
+                        });
+                        button.addEventListener('mouseup', () => {
+                            if (DIRECTIONS_KEYS.includes(direction)) {
+                                this.onKeyReleased(direction);
+                            }
+                            this.keys[key] = false;
+                        });
+                        button.addEventListener('touchstart', (event) => {
+                            event.preventDefault(); // Prevent default touch behavior
+                            if (DIRECTIONS_KEYS.includes(direction)) {
+                                this.onKeyPressed(direction);
+                            }
+                            this.keys[key] = true;
+                        });
+                        button.addEventListener('touchend', (event) => {
+                            event.preventDefault(); // Prevent default touch behavior
+                            if (DIRECTIONS_KEYS.includes(direction)) {
+                                this.onKeyReleased(direction);
+                            }
+                            this.keys[key] = false;
+                        });
+                    }
+                }
             }
-
-            addEventListeners(leftButton, LEFT);
-            addEventListeners(rightButton, RIGHT);
-            addEventListeners(upButton, UP);
-            addEventListeners(downButton, DOWN);
         });
     }
 
     get direction() {
         return this.heldDirections[0];
+    }
+
+    getDirection(eventCode, pressed) {
+        for (const direction of Object.keys(APP_KEYS)) {
+            if (APP_KEYS[direction].includes(eventCode)) {
+                if (DIRECTIONS_KEYS.includes(direction)) {
+                    if (pressed) {
+                        this.onKeyPressed(direction);
+                    } else {
+                        this.onKeyReleased(direction);
+                    }
+                }
+            }
+        }
     }
 
     update() {
