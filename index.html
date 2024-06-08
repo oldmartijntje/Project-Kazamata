@@ -11,7 +11,7 @@
     <meta property="og:image" content="https://api.oldmartijntje.nl/api/oldmartijntje.nl/assets/images/mii.png">
     <!-- <meta property="og:url" content=""> -->
     <meta property="og:type" content="website">
-  <script type="module" crossorigin src="/Project-Kazamata/assets/index-B3L9XSEn.js"></script>
+  <script type="module" crossorigin src="/Project-Kazamata/assets/index-DnmeQYu_.js"></script>
   <link rel="stylesheet" crossorigin href="/Project-Kazamata/assets/index-CpsnMcEN.css">
 </head>
 
@@ -19,11 +19,14 @@
 
 <body>
     <canvas id="game-canvas" width="320" height="180"></canvas>
-    <button class="ArrowUp">^</button>
-    <button class="KeyA">&lt;</button>
-    <button class="ArrowDown">_</button>
-    <button class="ArrowRight">></button>
-    <button class="Space">Spacebar</button>
+    <div>
+        <button class="gameController ArrowUp">^</button>
+        <button class="gameController KeyA">&lt;</button>
+        <button class="gameController ArrowDown" style="transform: rotate(180deg);">^</button>
+        <button class="gameController ArrowRight">></button>
+        <img class="gameController Space" alt="Spacebar" src="https://i.imgur.com/enN6fzh.png"
+            style="height:51px"></img>
+    </div>
 </body>
 
 </html>
