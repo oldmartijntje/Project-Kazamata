@@ -34,7 +34,7 @@ export class Input {
         document.addEventListener('DOMContentLoaded', () => {
             for (const direction of Object.keys(APP_KEYS)) {
                 for (const key of APP_KEYS[direction]) {
-                    const buttons = document.getElementsByClassName(key);
+                    const buttons = document.querySelectorAll(`.${key}.gameController`);
                     for (const button of buttons) {
                         button.addEventListener('mousedown', () => {
                             if (DIRECTIONS_KEYS.includes(direction)) {

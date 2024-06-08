@@ -18,11 +18,14 @@
 
 <body>
     <canvas id="game-canvas" width="320" height="180"></canvas>
-    <button class="ArrowUp">^</button>
-    <button class="KeyA">&lt;</button>
-    <button class="ArrowDown">_</button>
-    <button class="ArrowRight">></button>
-    <button class="Space">Spacebar</button>
+    <div>
+        <button class="gameController ArrowUp">^</button>
+        <button class="gameController KeyA">&lt;</button>
+        <button class="gameController ArrowDown" style="transform: rotate(180deg);">^</button>
+        <button class="gameController ArrowRight">></button>
+        <img class="gameController Space" alt="Spacebar" src="https://i.imgur.com/enN6fzh.png"
+            style="height:51px"></img>
+    </div>
     <script type="module" src="./main.js"></script>
 </body>
 
