@@ -17,6 +17,7 @@ class Resources {
 
             //  HUD
             textBox: "sprites/text-box.png",
+            portraits: "sprites/portraits-sheet.png",
             fontWhite: "sprites/sprite-font-white.png",
         }
 

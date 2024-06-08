@@ -6,7 +6,7 @@ import { Vector2 } from "../../Vector2.js";
 import { getCharacterFrame, getCharacterWidth } from "./SpriteFontMap.js";
 
 // Settings for the font
-const FONT_CHARACTER_OFFSET = 5; // every letter has 5 pixels of offset to the left in the sprite sheet
+const FONT_CHARACTER_OFFSET = 4; // every letter has 5 pixels of offset to the left in the sprite sheet
 const FONT_CHARACTER_SPACE_BETWEEN = 1;
 const FONT_WORD_SPACE_BETWEEN = 3;
 
@@ -16,12 +16,14 @@ const CURRENT_SHOWING_INCREMENT = 1; // amount fo showing indexes needed per cha
 const SHOWING_INDEX_INCREMENT = 1; // the increase in the showing index per tick
 
 export class SpriteTextString extends GameObject {
-    constructor(str) {
+    constructor(config = {}) {
         super({
             position: new Vector2(32, 108)
         });
-        const content = str ?? "";
         this.drawLayer = "HUD"
+
+        const content = config.string ?? "Default Text";
+
         this.words = content.split(' ').map(word => {
 
             // Calculate the width of the word
@@ -50,6 +52,17 @@ export class SpriteTextString extends GameObject {
             resource: resources.images.textBox,
             frameSize: new Vector2(256, 64),
         })
+
+        if (config.portraitFrame !== null && config.portraitFrame !== undefined) {
+            this.portrait = new Sprite({
+                resource: resources.images.portraits,
+                hFrames: 4,
+                vFrames: 1,
+                frame: config.portraitFrame ?? 0,
+            });
+        } else {
+            this.portrait = null;
+        }
 
         // Text animation
         this.showingIndex = 0;
@@ -83,13 +96,29 @@ export class SpriteTextString extends GameObject {
     drawImage(ctx, drawPosX, drawPosY) {
         this.backdrop.drawImage(ctx, drawPosX, drawPosY);
 
+        const PORTRAIT_PADDING_LEFT = 6;
+        const PORTRAIT_PADDING_TOP = 6;
+
+        if (this.portrait) {
+            this.portrait.drawImage(ctx, drawPosX + PORTRAIT_PADDING_LEFT, drawPosY + PORTRAIT_PADDING_TOP);
+        }
+
         const PADDING_LEFT = 7;
         const PADDING_TOP = 7;
         const LINE_WIDTH_MAX = 240;
         const LINE_VERTICAL_HEIGHT = 14;
+        const PADDING_LEFT_PORTRAIT_ADDITION = 18;
+        const PADDING_TOP_PORTRAIT_ADDITION = 2;
 
-        let cursorX = drawPosX + PADDING_LEFT;
-        let cursorY = drawPosY + PADDING_TOP;
+        let totalPaddingLeft = PADDING_LEFT;
+        let totalPaddingTop = PADDING_TOP;
+        if (this.portrait) {
+            totalPaddingLeft += PADDING_LEFT_PORTRAIT_ADDITION;
+            totalPaddingTop += PADDING_TOP_PORTRAIT_ADDITION;
+        }
+
+        let cursorX = drawPosX + totalPaddingLeft;
+        let cursorY = drawPosY + totalPaddingTop;
         let currentShowingIndex = 0;
 
         this.words.forEach(word => {
@@ -97,7 +126,7 @@ export class SpriteTextString extends GameObject {
             // check if the word fits on the line
             const spaceRemaining = drawPosX + LINE_WIDTH_MAX - cursorX;
             if (spaceRemaining < word.wordWidth) {
-                cursorX = drawPosX + PADDING_LEFT;
+                cursorX = drawPosX + totalPaddingLeft;
                 cursorY += LINE_VERTICAL_HEIGHT;
             }
 

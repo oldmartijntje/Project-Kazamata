@@ -27,21 +27,30 @@ export class Main extends GameObject {
             this.setLevel(newLevelInstance);
         });
 
-        events.on('HERO_REQUESTS_ACTION', this, () => {
-            let textBox = null;
-            if (TEXT_MODE === TEXT_TTF_FONT) {
-                textBox = new TextBox();
-            } else {
-                textBox = new SpriteTextString("Hallo mijn naam is Gamemeneer en in Minecraft bouw ik boten.");
-            }
-            this.addChild(textBox);
-            events.emit('START_TEXT_BOX');
+        events.on('HERO_REQUESTS_ACTION', this, (withObject) => {
+            if (typeof withObject.getContent === 'function') {
+                const content = withObject.getContent();
+                const options = {
+                    string: content.string,
+                    portraitFrame: content.portraitFrame ?? null
+                }
+                let textBox = null;
+                if (TEXT_MODE === TEXT_TTF_FONT) {
+                    textBox = new TextBox();
+                } else {
+                    textBox = new SpriteTextString(options);
+                }
+                this.addChild(textBox);
+                events.emit('START_TEXT_BOX');
 
-            // Remove the text box when the player presses space
-            const endingSub = events.on('END_TEXT_BOX', this, () => {
-                textBox.destroy();
-                events.off(endingSub);
-            });
+                // Remove the text box when the player presses space
+                const endingSub = events.on('END_TEXT_BOX', this, () => {
+                    textBox.destroy();
+                    events.off(endingSub);
+                });
+            }
+
+
         });
     }
 

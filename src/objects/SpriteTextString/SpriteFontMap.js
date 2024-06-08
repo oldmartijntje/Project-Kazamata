@@ -3,12 +3,9 @@ const DEFAULT_WIDTH = 5;
 const width = new Map()
 
 // add overrides as needed
-width.set('c', 4)
-width.set('f', 5)
 width.set('i', 2)
 width.set('j', 4)
 width.set('l', 3)
-width.set('n', 4)
 
 width.set('r', 4)
 width.set('t', 4)
@@ -24,7 +21,7 @@ width.set('M', 7)
 width.set('W', 7)
 
 width.set(' ', 3)
-width.set("'", 1)
+width.set("'", 2)
 width.set('!', 1)
 
 

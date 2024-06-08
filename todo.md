@@ -18,6 +18,11 @@
 - [ ] onclick pathfinding (mostly for mobile players)
 - [ ] merge SpriteTextString() and TextBox()
 - [ ] not all textboxes should lock the player.
+- [ ] HERO_REQUESTS_ACTION withObject.getContent(); should return a type, and when the type = text, show textbox.
+- [ ] make text interactions an attribute
+
+- [ ] add attrebutes (like rigidbody is a thing in unity you can apply to everything.)
+- [ ] add a global variables list for easy saving, loading, and interconnected behaviour.
 
 - encorperation:
     - [ ] add to website links

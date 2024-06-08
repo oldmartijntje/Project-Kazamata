@@ -36,8 +36,10 @@ export class OutdoorLevel1 extends Level {
         this.addChild(new Rod(gridCells(12), gridCells(3)));
         this.addChild(new Rod(gridCells(13), gridCells(3)));
 
-        const npc = new Npc(gridCells(6), gridCells(3));
+        const npc = new Npc(gridCells(6), gridCells(3), { "content": "Hallo mijn naam is Gamemeneer en in Minecraft bouw ik boten.", "portraitFrame": 1 });
+        const npc2 = new Npc(gridCells(7), gridCells(2), { "content": 'Jij bent mijn Henk!' });
         this.addChild(npc);
+        this.addChild(npc2);
 
         this.heroStartPosition = params.heroPosition ?? DEFAULT_HERO_POSITION;
         const hero = new Hero(this.heroStartPosition.x, this.heroStartPosition.y);
