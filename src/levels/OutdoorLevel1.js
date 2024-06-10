@@ -10,6 +10,7 @@ import { config } from "../../config.js";
 import { CaveLevel1 } from "./CaveLevel1.js";
 import { events } from "../Events.js";
 import { Npc } from "../objects/Npc/Npc.js";
+import { TALKED_TO_A, TALKED_TO_B } from "../StoryFlags.js";
 
 const DEFAULT_HERO_POSITION = new Vector2(gridCells(10), gridCells(4));
 
@@ -36,8 +37,41 @@ export class OutdoorLevel1 extends Level {
         this.addChild(new Rod(gridCells(12), gridCells(3)));
         this.addChild(new Rod(gridCells(13), gridCells(3)));
 
-        const npc = new Npc(gridCells(6), gridCells(3), { "content": "Hallo mijn naam is Gamemeneer en in Minecraft bouw ik boten.", "portraitFrame": 1 });
-        const npc2 = new Npc(gridCells(7), gridCells(2), { "content": 'Jij bent mijn Henk!' });
+        const npc = new Npc(gridCells(6), gridCells(3), {
+            "content": [
+                {
+                    "string": "Hallo mijn naam is Gamemeneer en in Minecraft bouw ik boten.",
+                    "addsFlags": [TALKED_TO_A],
+                    "bypass": [TALKED_TO_A],
+                },
+                {
+                    "string": "Ik ben bruin, als ik door de modder rol.",
+                    "requires": [TALKED_TO_A],
+                    "addsFlags": [TALKED_TO_B],
+                    "bypass": [TALKED_TO_B],
+                },
+                {
+                    "string": "Slippers aan, voel me net een blinde mol.",
+                    "requires": [TALKED_TO_B],
+                    "removesFlags": [TALKED_TO_B]
+                }
+            ],
+            "portraitFrame": 1
+        });
+        const npc2 = new Npc(gridCells(7), gridCells(2), {
+            "content": [
+                {
+                    "string": "I am waiting for the grass to grow.",
+                    "portraitFrame": null,
+                    "bypass": [TALKED_TO_A],
+                },
+                {
+                    "string": "Jij bent mijn Henk! Gamemeneer is niet mijn Henk!",
+                    "requires": [TALKED_TO_A],
+                    "portraitFrame": 0
+                }
+            ]
+        });
         this.addChild(npc);
         this.addChild(npc2);
 

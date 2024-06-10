@@ -2,6 +2,7 @@ import { Camera } from "../../Camera.js";
 import { events } from "../../Events.js";
 import { GameObject } from "../../GameObject.js";
 import { Input } from "../../Input.js";
+import { storyFlags } from "../../StoryFlags.js";
 import { Inventory } from "../Inventory/Inventory.js";
 import { SpriteTextString } from "../SpriteTextString/SpriteTextString.js";
 import { TextBox } from "../TextBox/TextBox.js";
@@ -30,6 +31,20 @@ export class Main extends GameObject {
         events.on('HERO_REQUESTS_ACTION', this, (withObject) => {
             if (typeof withObject.getContent === 'function') {
                 const content = withObject.getContent();
+                if (!content) {
+                    return;
+                }
+
+                if (content.addsFlags) {
+                    content.addsFlags.forEach(flag => {
+                        storyFlags.add(flag);
+                    });
+                }
+                if (content.removesFlags) {
+                    content.removesFlags.forEach(flag => {
+                        storyFlags.remove(flag);
+                    });
+                }
                 const options = {
                     string: content.string,
                     portraitFrame: content.portraitFrame ?? null
