@@ -61,14 +61,20 @@ export class OutdoorLevel1 extends Level {
         const npc2 = new Npc(gridCells(7), gridCells(2), {
             "content": [
                 {
-                    "string": "I am waiting for the grass to grow.",
+                    "string": "You see a man who is waiting for the grass to grow.",
                     "portraitFrame": null,
                     "bypass": [TALKED_TO_A],
                 },
                 {
-                    "string": "Jij bent mijn Henk! Gamemeneer is niet mijn Henk!",
+                    "string": "Jij bent mijn Henk!",
                     "requires": [TALKED_TO_A],
+                    "bypass": [TALKED_TO_B],
                     "portraitFrame": 0
+                },
+                {
+                    "string": "...",
+                    "requires": [TALKED_TO_B],
+                    "portraitFrame": 1
                 }
             ]
         });

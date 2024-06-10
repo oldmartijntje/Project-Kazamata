@@ -23,6 +23,8 @@
 
 - [ ] add attrebutes (like rigidbody is a thing in unity you can apply to everything.)
 - [ ] add a global variables list for easy saving, loading, and interconnected behaviour.
+- [ ] stringed chats, multiple forced messages after eachother.
+- [ ] being able to set events to be emitted after you are done talking with a specific message.
 
 - encorperation:
     - [ ] add to website links
