@@ -10,22 +10,23 @@ import { FrameIndexPattern } from "../../FrameIndexPattern.js";
 import { moveTowards } from "../../helpers/moveTowards.js";
 import { config } from '../../../config.js';
 import { events } from "../../Events.js";
+import { Entity } from "../Entity/Entity.js";
 
+/**
+ * @class Hero
+ * @description Represents the player character.
+ * @extends Entity
+ * @exports Hero
+ */
+export class Hero extends Entity {
 
-export class Hero extends GameObject {
-    constructor(x, y) {
-        super({
-            position: new Vector2(x, y)
-        });
-
-        const shadow = new Sprite({
-            resource: resources.images.shadow,
-            position: new Vector2(-8, -19),
-            frameSize: new Vector2(32, 32),
-        });
-        this.addChild(shadow);
-
-        this.body = new Sprite({
+    /**
+     * @constructor
+     * @param {number} x - Hero x position. (in pixels)
+     * @param {number} y - Hero y position. (in pixels)
+     */
+    constructor(x, y, focus = true) {
+        const body = new Sprite({
             resource: resources.images.hero,
             hFrames: 3,
             vFrames: 8,
@@ -44,7 +45,19 @@ export class Hero extends GameObject {
                 pickupDown: new FrameIndexPattern(PICK_UP_DOWN),
             })
         });
-        this.addChild(this.body);
+
+        super({
+            position: new Vector2(x, y),
+            body: body,
+            speed: 1 // float numbers cause motion blur.
+        });
+
+
+        // the hero is the focus of the camera
+        this.focus = focus;
+
+        // the hero is solid, so other entities can't walk through it, nor can other playesr in multiplayer games.
+        this.isSolid = true;
 
         this.facingDirection = DOWN;
         this.destinationPosition = this.position.duplicate();
@@ -91,8 +104,11 @@ export class Hero extends GameObject {
             }
         }
 
-        const distance = moveTowards(this, this.destinationPosition, 1);
-        const hasArrived = distance <= 1;
+        let hasArrived = true;
+        if (this.movementSpeed != null) {
+            const distance = moveTowards(this, this.destinationPosition, this.movementSpeed);
+            hasArrived = distance <= 1;
+        }
 
         // if we've arrived, try to move in the direction of the input
         if (hasArrived) {
@@ -105,7 +121,7 @@ export class Hero extends GameObject {
         if (this.lastPosition && this.lastPosition.x === this.position.x && this.lastPosition.y === this.position.y) {
             return;
         }
-        events.emit('HERO_POSITION', { position: this.position, initialPosition: !this.lastPosition });
+        events.emit('HERO_POSITION', { position: this.position, initialPosition: !this.lastPosition, focus: this.focus });
         this.lastPosition = this.position.duplicate();
     }
 

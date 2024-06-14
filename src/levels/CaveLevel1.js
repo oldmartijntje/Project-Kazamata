@@ -33,7 +33,7 @@ export class CaveLevel1 extends Level {
         this.addChild(rod);
 
         this.heroStartPosition = params.heroPosition ?? DEFAULT_HERO_POSITION;
-        const hero = new Hero(this.heroStartPosition.x, this.heroStartPosition.y);
+        const hero = new Hero(this.heroStartPosition.x, this.heroStartPosition.y, true);
         this.addChild(hero);
 
         // this.walls = new Set(); // this is already defined in the Level class

@@ -1,8 +1,17 @@
+
+/**
+ * @function moveTowards
+ * @description Move an entity towards a destination position. 
+ * If the entity is already at the destination, it will snap to the destination.
+ * 
+ * @param {object} person - The entity to move.
+ * @param {Vector2} destinationPosition - The destination position.
+ * @param {number} speed - The speed to move at.
+ * @returns {number} The distance remaining to the destination.
+ */
 export function moveTowards(person, destinationPosition, speed) {
     let distanceToTravelX = destinationPosition.x - person.position.x;
     let distanceToTravelY = destinationPosition.y - person.position.y;
-
-
 
     let distance = Math.sqrt(distanceToTravelX ** 2 + distanceToTravelY ** 2);
     if (distance === 0) {
@@ -40,6 +49,16 @@ export function moveTowards(person, destinationPosition, speed) {
     return distance
 }
 
+/**
+ * @function calculateMoveOnto
+ * @description Check if an entity has moved onto a position. Because of how the movement system is setup, theoretically you can move onto and off a tile in the same frame.
+ * But these frames should still count as "stepped onto the tile" so we need to check if the entity has moved onto the tile.
+ * @param {Vector2} position - The position to check.
+ * @param {Vector2} entityPosition - The entity position.
+ * @param {Vector2} lastEntityPosition - The last entity position.
+ * @param {number} pixelOffset - The pixel offset.
+ * @returns {boolean} True if the entity has moved onto the position, false otherwise.
+ */
 export function calculateMoveOnto(position, entityPosition, lastEntityPosition = undefined, pixelOffset = 1) {
     entityPosition.x = Math.round(entityPosition.x);
     entityPosition.y = Math.round(entityPosition.y);

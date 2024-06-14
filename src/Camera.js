@@ -11,7 +11,9 @@ export class Camera extends GameObject {
 
     onInit() {
         events.on('HERO_POSITION', this, (value) => {
-            this.centerPositionOnTarget(value.position);
+            if (value.focus) {
+                this.centerPositionOnTarget(value.position);
+            }
         });
 
         events.on('CHANGE_LEVEL', this, (newMap) => {
