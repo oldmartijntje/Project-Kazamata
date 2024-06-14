@@ -84,8 +84,6 @@ export class OutdoorLevel1 extends Level {
         this.heroStartPosition = params.heroPosition ?? DEFAULT_HERO_POSITION;
         const hero = new Hero(this.heroStartPosition.x, this.heroStartPosition.y, true);
         this.addChild(hero);
-        this.addChild(new Hero(gridCells(8), gridCells(4), false));
-        this.addChild(new Hero(gridCells(9), gridCells(5), false));
 
 
         // this.walls = new Set(); // this is already defined in the Level class
