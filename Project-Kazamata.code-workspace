@@ -1,11 +1,14 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../Kazamata-CLI"
-		}
-	],
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "path": "../Kazamata-CLI"
+        },
+        {
+            "path": "../test"
+        }
+    ],
     "settings": {}
 }
