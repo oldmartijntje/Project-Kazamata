@@ -1,4 +1,5 @@
 ## changes
+- [ ] Developing in development branch. (also add it to the CLI)
 - [ ] FPS counter (setting)
 - [ ] ~~convert to typescript~~ - maybe another branch.
 - [ ] Give all methods /** */ comments

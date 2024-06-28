@@ -3,7 +3,7 @@
     "project-name": "kazamata-development-build",
     "kazamata-cli": {
         "generated": false,
-        "CLI-version": "1.0.0",
-        "oldest-compatible-version": "1.0.1"
+        "CLI-version": null,
+        "oldest-compatible-version": "1.1.0"
     }
 }
