@@ -1,13 +1,13 @@
 import { resources } from "../Resource.js";
-import { Sprite } from "../Sprite.js";
-import { Vector2 } from "../Vector2.js";
-import { Level } from "../objects/Level/Level.js";
-import { gridCells } from "../helpers/grid.js";
-import { Exit } from "../objects/Exit/Exit.js";
-import { Hero } from "../objects/Hero/Hero.js";
-import { Rod } from "../objects/Rod/Rod.js";
-import { config } from "../../config.js";
-import { events } from "../Events.js";
+import { Sprite } from "../../system/src/models/Sprite.js";
+import { Vector2 } from "../../system/src/models/Vector2.js";
+import { Level } from "../../system/src/gameObjects/Level/Level.js";
+import { gridCells } from "../../system/src/helpers/grid.js";
+import { Exit } from "../src/gameObjects/Exit/Exit.js";
+import { Hero } from "../src/gameObjects/Hero/Hero.js";
+import { Rod } from "../src/gameObjects/Rod/Rod.js";
+import { config } from "../config.js";
+import { events } from "../../system/src/models/Events.js";
 import { OutdoorLevel1 } from "./OutdoorLevel1.js";
 
 const DEFAULT_HERO_POSITION = new Vector2(gridCells(8), gridCells(4));

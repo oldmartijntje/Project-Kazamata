@@ -3,7 +3,7 @@ import { Vector2 } from "../../Vector2.js";
 import { Sprite } from "../../Sprite.js";
 import { resources } from '../../Resource.js';
 import { storyFlags } from "../../StoryFlags.js";
-import { Entity } from "../Entity/Entity.js";
+import { Entity } from "../../../../system/src/gameObjects/Entity/Entity.js";
 
 /**
  * @class Npc

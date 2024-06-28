@@ -3,9 +3,9 @@ import { events } from "../../Events.js";
 import { GameObject } from "../../GameObject.js";
 import { Input } from "../../Input.js";
 import { storyFlags } from "../../StoryFlags.js";
-import { Inventory } from "../Inventory/Inventory.js";
-import { SpriteTextString } from "../SpriteTextString/SpriteTextString.js";
-import { TextBox } from "../TextBox/TextBox.js";
+import { Inventory } from "../../../../system/src/gameObjects/Inventory/Inventory.js";
+import { SpriteTextString } from "../../../../system/src/gameObjects/SpriteTextString/SpriteTextString.js";
+import { TextBox } from "../../../../system/src/gameObjects/TextBox/TextBox.js";
 
 const TEXT_SPRITE_SHEET = 'TEXT_SPRITE_SHEET';
 const TEXT_TTF_FONT = 'TEXT_TTF_FONT';

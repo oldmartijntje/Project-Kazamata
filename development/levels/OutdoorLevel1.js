@@ -1,16 +1,17 @@
-import { resources } from "../Resource.js";
-import { Sprite } from "../Sprite.js";
-import { Vector2 } from "../Vector2.js";
-import { Level } from "../objects/Level/Level.js";
-import { gridCells } from "../helpers/grid.js";
-import { Exit } from "../objects/Exit/Exit.js";
-import { Hero } from "../objects/Hero/Hero.js";
-import { Rod } from "../objects/Rod/Rod.js";
-import { config } from "../../config.js";
 import { CaveLevel1 } from "./CaveLevel1.js";
-import { events } from "../Events.js";
-import { Npc } from "../objects/Npc/Npc.js";
-import { TALKED_TO_A, TALKED_TO_B } from "../StoryFlags.js";
+import { Npc } from "../src/gameObjects/Npc/Npc.js";
+import { TALKED_TO_A, TALKED_TO_B } from "../../system/src/models/StoryFlags.js";
+
+import { resources } from "../Resource.js";
+import { Sprite } from "../../system/src/models/Sprite.js";
+import { Vector2 } from "../../system/src/models/Vector2.js";
+import { Level } from "../../system/src/gameObjects/Level/Level.js";
+import { gridCells } from "../../system/src/helpers/grid.js";
+import { Exit } from "../src/gameObjects/Exit/Exit.js";
+import { Hero } from "../src/gameObjects/Hero/Hero.js";
+import { Rod } from "../src/gameObjects/Rod/Rod.js";
+import { config } from "../config.js";
+import { events } from "../../system/src/models/Events.js";
 
 const DEFAULT_HERO_POSITION = new Vector2(gridCells(10), gridCells(4));
 

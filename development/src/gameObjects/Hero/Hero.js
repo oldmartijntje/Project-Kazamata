@@ -1,16 +1,16 @@
 import { Animations } from "../../Animations.js";
 import { GameObject } from "../../GameObject.js";
-import { calculateNearestGridPosition, gridCells, isSpaceFree } from "../../helpers/grid.js";
+import { calculateNearestGridPosition, gridCells, isSpaceFree } from "../../../../system/src/helpers/grid.js";
 import { resources } from '../../Resource.js';
 import { DOWN, LEFT, RIGHT, UP } from "../../Input.js";
 import { Sprite } from "../../Sprite.js";
 import { Vector2 } from "../../Vector2.js";
 import { PICK_UP_DOWN, STAND_DOWN, STAND_LEFT, STAND_RIGHT, STAND_UP, WALK_DOWN, WALK_LEFT, WALK_RIGHT, WALK_UP } from "./heroAnimations.js";
 import { FrameIndexPattern } from "../../FrameIndexPattern.js";
-import { moveTowards } from "../../helpers/moveTowards.js";
+import { moveTowards } from "../../../../system/src/helpers/moveTowards.js";
 import { config } from '../../../config.js';
 import { events } from "../../Events.js";
-import { Entity } from "../Entity/Entity.js";
+import { Entity } from "../../../../system/src/gameObjects/Entity/Entity.js";
 
 /**
  * @class Hero

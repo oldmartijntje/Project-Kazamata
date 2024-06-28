@@ -3,7 +3,7 @@ import { GameObject } from "../../GameObject.js";
 import { resources } from "../../Resource.js";
 import { Sprite } from "../../Sprite.js";
 import { Vector2 } from "../../Vector2.js";
-import { calculateMoveOnto } from "../../helpers/moveTowards.js";
+import { calculateMoveOnto } from "../../../../system/src/helpers/moveTowards.js";
 
 export class Rod extends GameObject {
     constructor(x, y) {

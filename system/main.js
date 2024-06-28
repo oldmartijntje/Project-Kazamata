@@ -1,7 +1,7 @@
-import { Vector2 } from "./src/Vector2.js";
-import { GameLoop } from "./src/GameLoop.js";
-import { Main } from './src/objects/Main/Main.js';
-import { OutdoorLevel1 } from "./src/levels/OutdoorLevel1.js";
+import { Vector2 } from "./src/models/Vector2.js"
+import { GameLoop } from "./src/models/GameLoop.js";
+import { Main } from '../development/src/gameObjects/Main/Main.js';
+import { OutdoorLevel1 } from "../development/levels/OutdoorLevel1.js";
 
 const canvas = document.querySelector('#game-canvas');
 const ctx = canvas.getContext('2d');
