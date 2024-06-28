@@ -4,8 +4,6 @@
     "kazamata-cli": {
         "generated": false,
         "CLI-version": "1.0.0",
-        "oldest-compatible-version": [
-            "1.0.1"
-        ]
+        "oldest-compatible-version": "1.0.1"
     }
 }
