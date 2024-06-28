@@ -3,7 +3,7 @@ import { GameObject } from "../../system/GameObject.js";
 import { resources } from "../../system/Resource.js";
 import { Sprite } from "../../system/Sprite.js";
 import { Vector2 } from "../../system/Vector2.js";
-import { getCharacterFrame, getCharacterWidth } from "./SpriteFontMap.js";
+import { getCharacterFrame, getCharacterWidth } from "./spriteFontMap.js";
 
 // Settings for the font
 const FONT_CHARACTER_OFFSET = 4; // every letter has 5 pixels of offset to the left in the sprite sheet
