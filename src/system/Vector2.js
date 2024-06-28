@@ -1,4 +1,4 @@
-import { config } from "../../config.js";
+import { config } from "../config.js";
 import { UP, DOWN, LEFT, RIGHT } from "./Input.js";
 
 export class Vector2 {

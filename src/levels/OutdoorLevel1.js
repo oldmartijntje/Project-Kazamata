@@ -6,7 +6,7 @@ import { gridCells } from "../helpers/grid.js";
 import { Exit } from "../objects/Exit/Exit.js";
 import { Hero } from "../objects/Hero/Hero.js";
 import { Rod } from "../objects/Rod/Rod.js";
-import { config } from "../../config.js";
+import { config } from "../config.js";
 import { CaveLevel1 } from "./CaveLevel1.js";
 import { events } from "../system/Events.js";
 import { Npc } from "../objects/Npc/Npc.js";

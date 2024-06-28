@@ -1,5 +1,5 @@
 import { Vector2 } from "./Vector2.js";
-import { config } from '../../config.js';
+import { config } from '../config.js';
 import { GameObject } from "./GameObject.js";
 
 export class Sprite extends GameObject {

@@ -1,4 +1,4 @@
-import { config } from '../../config.js';
+import { config } from '../config.js';
 import { Vector2 } from '../system/Vector2.js';
 
 /**

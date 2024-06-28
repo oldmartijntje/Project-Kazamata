@@ -8,7 +8,7 @@ import { Vector2 } from "../../system/Vector2.js";
 import { PICK_UP_DOWN, STAND_DOWN, STAND_LEFT, STAND_RIGHT, STAND_UP, WALK_DOWN, WALK_LEFT, WALK_RIGHT, WALK_UP } from "./heroAnimations.js";
 import { FrameIndexPattern } from "../../system/FrameIndexPattern.js";
 import { moveTowards } from "../../helpers/moveTowards.js";
-import { config } from '../../../config.js';
+import { config } from '../../config.js';
 import { events } from "../../system/Events.js";
 import { Entity } from "../Entity/Entity.js";
 
